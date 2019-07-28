@@ -117,6 +117,8 @@ public class roleGenerator implements ActionListener, WindowListener {
             namesInput[i].setFont(courier);
             namesInput[i].setHorizontalAlignment(SwingConstants.CENTER);
             namePanel.add(namesInput[i]);
+
+            if(namesInput[i].getActionListeners().length < 1) namesInput[i].addActionListener(this);
         }
 
         nameFrame.add(nameFrameContinueButton, BorderLayout.SOUTH);
@@ -215,7 +217,15 @@ public class roleGenerator implements ActionListener, WindowListener {
             nameMenu();
         }
 
-        if(e.getSource() == nameFrameContinueButton) {
+        boolean nameInputTriggered = false;
+
+        for(int i = 0; i < players; i++) {
+            if(e.getSource() == namesInput[i]) {
+                nameInputTriggered = true;
+            }
+        }
+
+        if(e.getSource() == nameFrameContinueButton || nameInputTriggered) {
             for(int i = 0; i < players; i++) {
                 names[i] = namesInput[i].getText();
             }
