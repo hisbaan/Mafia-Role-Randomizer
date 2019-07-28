@@ -6,6 +6,7 @@
 //This program 
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.plaf.FontUIResource;
 import java.awt.*;
 import java.awt.event.*;
@@ -18,17 +19,18 @@ public class roleGenerator implements ActionListener, WindowListener {
 
     //main menu variables
     JFrame mainMenuFrame = new JFrame("Mafia Role Randomizer");
+    JLabel introLabel = new JLabel("<html>Mafia<br>Role<br>Randomizer</html>", SwingConstants.CENTER);
     JButton mainMenuStartButton = new JButton("Start");
 
     //number menu variables
     JFrame numberFrame = new JFrame("Mafia Role Randomizer");
     JButton numberFrameContinueButton = new JButton("Continue");
-    JTextField numberField = new JTextField(3);
+    JTextField numberField = new JTextField();
 
     //name menu variables
     JFrame nameFrame = new JFrame("Mafia Role Randomizer");
     JPanel namePanel = new JPanel();
-    JLabel nameFrameInstructions = new JLabel("Enter one name in each box:");
+    JLabel nameFrameInstructions = new JLabel("Enter one name in each box:", SwingConstants.CENTER);
     JButton nameFrameContinueButton = new JButton("Continue");
     JTextField[] namesInput;
 
@@ -53,10 +55,14 @@ public class roleGenerator implements ActionListener, WindowListener {
     }
 
     public void mainMenu() {
-        mainMenuFrame.setSize(800, 800);
+        mainMenuFrame.setSize(400, 300);
         mainMenuFrame.setLayout(new BorderLayout());
         mainMenuFrame.setResizable(false);
         if(mainMenuFrame.getWindowListeners().length < 1) mainMenuFrame.addWindowListener(this);
+
+        introLabel.setFont(new Font("Courier New", Font.PLAIN, 50));
+//        introLabel.setHorizontalAlignment(JLabel.CENTER);
+        mainMenuFrame.add(introLabel, BorderLayout.CENTER);
 
         mainMenuFrame.add(mainMenuStartButton, BorderLayout.SOUTH);
         if (mainMenuStartButton.getActionListeners().length < 1) mainMenuStartButton.addActionListener(this);
@@ -68,12 +74,12 @@ public class roleGenerator implements ActionListener, WindowListener {
     }
 
     public void numberMenu() {
-        numberFrame.setSize(450, 125);
+        numberFrame.setSize(400, 125);
         numberFrame.setLayout(new GridLayout(3, 1));
         numberFrame.setResizable(false);
         if(numberFrame.getWindowListeners().length < 1) numberFrame.addWindowListener(this);
 
-        JLabel instructions = new JLabel("Enter the amount of players:");
+        JLabel instructions = new JLabel("Enter the amount of players:", SwingConstants.CENTER);
         instructions.setFont(courier);
         numberFrame.add(instructions);
 
@@ -85,7 +91,6 @@ public class roleGenerator implements ActionListener, WindowListener {
         numberFrame.add(numberFrameContinueButton);
         numberFrameContinueButton.setFont(courierSmall);
         if(numberFrameContinueButton.getActionListeners().length < 1) numberFrameContinueButton.addActionListener(this);
-
         numberField.setEditable(true);
 
         mainMenuFrame.setVisible(false);
@@ -110,6 +115,7 @@ public class roleGenerator implements ActionListener, WindowListener {
             namesInput[i] = new JTextField();
             namesInput[i].setEditable(true);
             namesInput[i].setFont(courier);
+            namesInput[i].setHorizontalAlignment(SwingConstants.CENTER);
             namePanel.add(namesInput[i]);
         }
 
