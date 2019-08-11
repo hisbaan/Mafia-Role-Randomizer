@@ -58,7 +58,7 @@ public class roleGenerator implements ActionListener, WindowListener {
         mainMenuFrame.setSize(400, 300);
         mainMenuFrame.setLayout(new BorderLayout());
         mainMenuFrame.setResizable(false);
-        if(mainMenuFrame.getWindowListeners().length < 1) mainMenuFrame.addWindowListener(this);
+        if (mainMenuFrame.getWindowListeners().length < 1) mainMenuFrame.addWindowListener(this);
 
         introLabel.setFont(new Font("Courier New", Font.PLAIN, 50));
 //        introLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -77,7 +77,7 @@ public class roleGenerator implements ActionListener, WindowListener {
         numberFrame.setSize(400, 125);
         numberFrame.setLayout(new GridLayout(3, 1));
         numberFrame.setResizable(false);
-        if(numberFrame.getWindowListeners().length < 1) numberFrame.addWindowListener(this);
+        if (numberFrame.getWindowListeners().length < 1) numberFrame.addWindowListener(this);
 
         JLabel instructions = new JLabel("Enter the amount of players:", SwingConstants.CENTER);
         instructions.setFont(courier);
@@ -90,7 +90,8 @@ public class roleGenerator implements ActionListener, WindowListener {
 
         numberFrame.add(numberFrameContinueButton);
         numberFrameContinueButton.setFont(courierSmall);
-        if(numberFrameContinueButton.getActionListeners().length < 1) numberFrameContinueButton.addActionListener(this);
+        if (numberFrameContinueButton.getActionListeners().length < 1)
+            numberFrameContinueButton.addActionListener(this);
         numberField.setEditable(true);
 
         mainMenuFrame.setVisible(false);
@@ -103,7 +104,7 @@ public class roleGenerator implements ActionListener, WindowListener {
         nameFrame.setSize(450, (50 * players + 1) + 22);
         nameFrame.setLayout(new BorderLayout());
         nameFrame.setResizable(false);
-        if(nameFrame.getWindowListeners().length < 1) nameFrame.addWindowListener(this);
+        if (nameFrame.getWindowListeners().length < 1) nameFrame.addWindowListener(this);
 
         nameFrame.add(namePanel, BorderLayout.CENTER);
         namePanel.setLayout(new GridLayout(players + 1, 1));
@@ -111,19 +112,19 @@ public class roleGenerator implements ActionListener, WindowListener {
         namePanel.add(nameFrameInstructions);
         nameFrameInstructions.setFont(courier);
 
-        for(int i = 0; i < players; i++) {
+        for (int i = 0; i < players; i++) {
             namesInput[i] = new JTextField();
             namesInput[i].setEditable(true);
             namesInput[i].setFont(courier);
             namesInput[i].setHorizontalAlignment(SwingConstants.CENTER);
             namePanel.add(namesInput[i]);
 
-            if(namesInput[i].getActionListeners().length < 1) namesInput[i].addActionListener(this);
+            if (namesInput[i].getActionListeners().length < 1) namesInput[i].addActionListener(this);
         }
 
         nameFrame.add(nameFrameContinueButton, BorderLayout.SOUTH);
         nameFrameContinueButton.setFont(courierSmall);
-        if(nameFrameContinueButton.getActionListeners().length < 1) nameFrameContinueButton.addActionListener(this);
+        if (nameFrameContinueButton.getActionListeners().length < 1) nameFrameContinueButton.addActionListener(this);
 
         mainMenuFrame.setVisible(false);
         numberFrame.setVisible(false);
@@ -132,15 +133,15 @@ public class roleGenerator implements ActionListener, WindowListener {
     }
 
     public void outputScreen() {
-        outputFrame.setSize(600, (players * 50) + 22) ;
+        outputFrame.setSize(600, (players * 50) + 22);
         outputFrame.setLayout(new BorderLayout());
         outputFrame.setResizable(false);
-        if(outputFrame.getWindowListeners().length < 1) outputFrame.addWindowListener(this);
+        if (outputFrame.getWindowListeners().length < 1) outputFrame.addWindowListener(this);
 
         outputFrame.add(outputPanel, BorderLayout.CENTER);
         outputPanel.setLayout(new GridLayout(players, 2));
-        
-        for(int i = 0; i < players; i++) {
+
+        for (int i = 0; i < players; i++) {
             namesOutput[i] = new JTextField(names[i]);
             rolesOutput[i] = new JTextField(roles[i]);
 
@@ -219,14 +220,14 @@ public class roleGenerator implements ActionListener, WindowListener {
 
         boolean nameInputTriggered = false;
 
-        for(int i = 0; i < players; i++) {
-            if(e.getSource() == namesInput[i]) {
+        for (int i = 0; i < players; i++) {
+            if (e.getSource() == namesInput[i]) {
                 nameInputTriggered = true;
             }
         }
 
-        if(e.getSource() == nameFrameContinueButton || nameInputTriggered) {
-            for(int i = 0; i < players; i++) {
+        if (e.getSource() == nameFrameContinueButton || nameInputTriggered) {
+            for (int i = 0; i < players; i++) {
                 names[i] = namesInput[i].getText();
             }
 
@@ -256,7 +257,7 @@ public class roleGenerator implements ActionListener, WindowListener {
 
         if (e.getSource() == outputFrameExitButton) {
             UIManager.put("OptionPane.messageFont", new FontUIResource(new Font("Courier New", Font.PLAIN, 20)));
-            JOptionPane.showMessageDialog(outputFrame ,"Thanks for using the mafia role generator!", "", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(outputFrame, "Thanks for using the mafia role generator!", "", JOptionPane.PLAIN_MESSAGE);
             System.exit(0);
         }
     }
